@@ -1,9 +1,9 @@
 import { Elysia } from "elysia";
 import { sequelize } from "@lib/db";
-import { folderRoute } from "@routes/folderRoute";
+import { folder } from "@routes/folder";
 
 const app = new Elysia()
-    .use(folderRoute);
+    .use(folder);
 
 const port = process.env.API_PORT || 3000;
 
