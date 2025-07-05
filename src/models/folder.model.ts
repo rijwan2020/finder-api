@@ -1,19 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '@lib/db';
 
-export class Folder extends Model {
-    id!: number;
-    name!: string;
-    parent_id?: number;
-    total_child?: number;
-}
+export class Folder extends Model {}
 
 Folder.init(
     {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
         name: {
             type: DataTypes.STRING,

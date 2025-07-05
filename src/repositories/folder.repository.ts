@@ -16,9 +16,23 @@ export class FolderRepository {
         });
     }
 
+    getById = (id: number) => Folder.findByPk(id);
+
     create = (data: {
         name: string;
         parent_id?: number;
         total_child?: number;
     }) => Folder.create(data);
+
+    update = async (
+        id: number,
+        data: Partial<{
+            name: string;
+            parent_id: number;
+            total_child: number;
+        }>
+    ) => {
+        const folder = await Folder.findByPk(id);
+        return folder?.update(data);
+    };
 }

@@ -1,3 +1,4 @@
+import { Folder } from "@models/folder.model";
 import { FolderRepository } from "@repositories/folder.repository";
 
 export class FolderService {
@@ -7,13 +8,28 @@ export class FolderService {
         parent_id?: number;
     }) => this.folderRepo.getAll(params);
 
-    create = (data: {
+    create = async (data: {
         name: string;
         parent_id?: number;
     }) => {
+        console.log('Input:', data);
+        const folder = await this.folderRepo.create(data);
+        console.log('Created:', folder?.toJSON?.());
         if (data.parent_id) {
-            // TODO: update parent
+            await this.adjustChild(data.parent_id);
         }
-        return this.folderRepo.create(data);
+        return folder?.toJSON();
+    }
+
+    adjustChild = async (id: number, type: string = 'increment') => {
+        const folder: Folder | null = await this.folderRepo.getById(id);
+        if (folder) {
+            const total_child = folder?.toJSON().total_child || 0;
+            const payloadUpdate = {
+                total_child: type === 'increment' ? total_child + 1 : total_child - 1,
+            }
+            await this.folderRepo.update(id, payloadUpdate);
+        }
+        return true;
     }
 }
