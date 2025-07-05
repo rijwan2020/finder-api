@@ -1,5 +1,5 @@
 import { FolderRepository } from "@repositories/folderRepository";
 
-export class UserService {
+export class FolderService {
     constructor(private repo: FolderRepository) { }
 }
