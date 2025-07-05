@@ -11,6 +11,12 @@
       "@repositories/*": [
         "src/repositories/*"
       ],
+      "@services/*": [
+        "src/services/*"
+      ],
+      "@controllers/*": [
+        "src/controllers/*"
+      ],
     },
     "lib": [
       "ESNext"
