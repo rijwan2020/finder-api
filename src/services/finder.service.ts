@@ -13,16 +13,16 @@ export class FinderService {
         type: string;
         parent_id?: number;
     }) => {
-        console.log('Input:', data);
         const finder = await this.finderRepo.create(data);
-        console.log('Created:', finder?.toJSON?.());
         if (data.parent_id) {
             await this.adjustChild(data.parent_id);
         }
         return finder?.toJSON();
     }
 
-    adjustChild = async (id: number, type: string = 'increment') => {
+    adjustChild = async (
+        id: number, type: string = 'increment'
+    ) => {
         const finder: Finder | null = await this.finderRepo.getById(id);
         if (finder) {
             const total_child = finder?.toJSON().total_child || 0;
@@ -39,5 +39,16 @@ export class FinderService {
         data: { name: string }
     ) => {
         return this.finderRepo.update(id, data);
+    }
+
+    delete = async (id: number) => {
+        const finder: Finder | null = await this.finderRepo.getById(id);
+        await this.finderRepo.delete(id);
+        await this.finderRepo.deleteByParentId(id);
+        const parentId = finder?.toJSON().parent_id || undefined;
+        if (parentId) {
+            this.adjustChild(parentId, 'decrement');
+        }
+        return true;
     }
 }
