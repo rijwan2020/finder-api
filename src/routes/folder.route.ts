@@ -8,4 +8,5 @@ const folderService = new FolderService(folderRepo);
 const folderController = new FolderController(folderService);
 
 export const folder = new Elysia({ prefix: '/folders' })
-    .get('/', folderController.getAll);
+    .get('/', folderController.getAll)
+    .post('/', folderController.create);

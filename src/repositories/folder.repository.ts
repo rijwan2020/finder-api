@@ -8,7 +8,7 @@ export class FolderRepository {
         if (parent_id) {
             where.parent_id = { [Op.eq]: parent_id };
         } else {
-            where.parent_id = { [Op.eq]: 0 };
+            where.parent_id = { [Op.eq]: null };
         }
 
         return Folder.findAll({
@@ -16,5 +16,9 @@ export class FolderRepository {
         });
     }
 
-    create = (data: { name: string; parent_id?: number, total_child?: number }) => Folder.create(data);
+    create = (data: {
+        name: string;
+        parent_id?: number;
+        total_child?: number;
+    }) => Folder.create(data);
 }

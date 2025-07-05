@@ -32,4 +32,28 @@ export class FolderController {
         return response;
     };
 
+    create = async ({ body }: Context<{
+        body: {
+            name: string;
+            parent_id?: number
+        }
+    }>) => {
+        const response: {
+            data?: Folder;
+            message: string;
+            code: number;
+        } = {
+            data: undefined,
+            message: 'Create folder successful',
+            code: 200,
+        };
+        try {
+            response.data = await this.folderSvc.create(body);
+        } catch (error) {
+            console.log('🚀 ~ FolderController ~ error:', error);
+            response.message = 'Failed to create folder data';
+            response.code = 500;
+        }
+        return response;
+    }
 }

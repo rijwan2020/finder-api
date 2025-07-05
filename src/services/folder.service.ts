@@ -5,7 +5,15 @@ export class FolderService {
 
     getFolders = (params: {
         parent_id?: number;
+    }) => this.folderRepo.getAll(params);
+
+    create = (data: {
+        name: string;
+        parent_id?: number;
     }) => {
-        return this.folderRepo.getAll(params);
-    };
+        if (data.parent_id) {
+            // TODO: update parent
+        }
+        return this.folderRepo.create(data);
+    }
 }
