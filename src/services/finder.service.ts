@@ -1,12 +1,28 @@
 import { Finder } from "@models/finder.model";
 import { FinderRepository } from "@repositories/finder.repository";
+import { Op } from "sequelize";
 
 export class FinderService {
     constructor(private finderRepo: FinderRepository) { }
 
     getFinders = (params: {
-        parent_id?: number;
-    }) => this.finderRepo.getAll(params);
+        parent_id?: string;
+        type?: string;
+    }) => {
+        const where: any = {};
+
+        const parentId = params.parent_id ? Number(params.parent_id) : undefined;
+        if (parentId) {
+            where.parent_id = { [Op.eq]: parentId };
+        } else {
+            where.parent_id = { [Op.eq]: null };
+        }
+
+        if (params.type != undefined) {
+            where.type = { [Op.eq]: params.type }
+        }
+        return this.finderRepo.getAll(where);
+    }
 
     create = async (data: {
         name: string;
@@ -37,9 +53,7 @@ export class FinderService {
     update = (
         id: number,
         data: { name: string }
-    ) => {
-        return this.finderRepo.update(id, data);
-    }
+    ) => this.finderRepo.update(id, data);
 
     delete = async (id: number) => {
         const finder: Finder | null = await this.finderRepo.getById(id);

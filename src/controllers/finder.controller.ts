@@ -7,6 +7,7 @@ export class FinderController {
     getAll = async ({ query }: Context<{
         query: {
             parent_id?: string;
+            type?: string;
         }
     }>) => {
         const response: {
@@ -19,9 +20,7 @@ export class FinderController {
             code: 200,
         };
         try {
-            const finders = await this.finderSvc.getFinders({
-                parent_id: query.parent_id ? Number(query.parent_id) : undefined,
-            });
+            const finders = await this.finderSvc.getFinders(query);
             response.data = finders;
 
         } catch (error) {

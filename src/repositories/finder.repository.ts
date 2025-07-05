@@ -1,16 +1,7 @@
 import { Finder } from "@models/finder.model";
-import { Op } from "sequelize";
 
 export class FinderRepository {
-    getAll = ({ parent_id }: { parent_id?: number }) => {
-        const where: any = {}
-
-        if (parent_id) {
-            where.parent_id = { [Op.eq]: parent_id };
-        } else {
-            where.parent_id = { [Op.eq]: null };
-        }
-
+    getAll = (where: any = {}) => {
         return Finder.findAll({
             where,
         });
