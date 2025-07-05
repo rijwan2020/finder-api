@@ -1,4 +1,4 @@
-import { FolderRepository } from "@repositories/folderRepository";
+import { FolderRepository } from "@repositories/folder.repository";
 
 export class FolderService {
     constructor(private folderRepo: FolderRepository) { }

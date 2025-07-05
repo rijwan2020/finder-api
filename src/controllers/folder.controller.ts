@@ -1,5 +1,5 @@
-import { Folder } from '@models/Folder';
-import { FolderService } from '@services/folderService';
+import { Folder } from '@models/folder.model';
+import { FolderService } from '@services/folder.service';
 import { Context } from 'elysia';
 
 export class FolderController {

@@ -1,4 +1,4 @@
-import { Folder } from "@models/Folder";
+import { Folder } from "@models/folder.model";
 import { Op } from "sequelize";
 
 export class FolderRepository {
@@ -15,4 +15,6 @@ export class FolderRepository {
             where,
         });
     }
+
+    create = (data: { name: string; parent_id?: number, total_child?: number }) => Folder.create(data);
 }

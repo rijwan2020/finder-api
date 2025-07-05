@@ -1,7 +1,7 @@
 import { Elysia } from 'elysia';
-import { FolderRepository } from '@repositories/folderRepository';
-import { FolderService } from '@services/folderService';
-import { FolderController } from '@controllers/folderController';
+import { FolderRepository } from '@repositories/folder.repository';
+import { FolderService } from '@services/folder.service';
+import { FolderController } from '@controllers/folder.controller';
 
 const folderRepo = new FolderRepository();
 const folderService = new FolderService(folderRepo);

@@ -1,6 +1,6 @@
 import { Elysia } from "elysia";
 import { sequelize } from "@lib/db";
-import { folder } from "@routes/folder";
+import { folder } from "@routes/folder.route";
 
 const app = new Elysia()
     .use(folder);
