@@ -1,3 +1,18 @@
 import { Folder } from "@models/Folder";
+import { Op } from "sequelize";
 
-export class FolderRepository {}
+export class FolderRepository {
+    getAll = ({ parent_id }: { parent_id?: number }) => {
+        const where: any = {}
+
+        if (parent_id) {
+            where.parent_id = { [Op.eq]: parent_id };
+        } else {
+            where.parent_id = { [Op.eq]: 0 };
+        }
+
+        return Folder.findAll({
+            where,
+        });
+    }
+}

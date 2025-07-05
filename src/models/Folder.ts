@@ -20,12 +20,12 @@ Folder.init(
             allowNull: false
         },
         parent_id: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: true,
         },
         total_child: {
-            type: DataTypes.NUMBER,
-            allowNull: true,
+            type: DataTypes.INTEGER,
+            allowNull: false,
             defaultValue: 0,
         },
     },

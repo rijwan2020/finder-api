@@ -7,4 +7,5 @@ const folderRepo = new FolderRepository();
 const folderService = new FolderService(folderRepo);
 const folderController = new FolderController(folderService);
 
-export const folder = new Elysia({ prefix: '/folders' });
+export const folder = new Elysia({ prefix: '/folders' })
+    .get('/', folderController.getAll);
