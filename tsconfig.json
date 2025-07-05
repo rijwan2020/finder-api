@@ -8,6 +8,9 @@
       "@models/*": [
         "src/models/*"
       ],
+      "@repositories/*": [
+        "src/repositories/*"
+      ],
     },
     "lib": [
       "ESNext"
