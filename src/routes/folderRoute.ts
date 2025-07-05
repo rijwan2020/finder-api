@@ -3,8 +3,8 @@ import { FolderRepository } from '@repositories/folderRepository';
 import { FolderService } from '@services/folderService';
 import { FolderController } from '@controllers/folderController';
 
-const repo = new FolderRepository();
-const service = new FolderService(repo);
-const controller = new FolderController(service);
+const folderRepo = new FolderRepository();
+const folderService = new FolderService(folderRepo);
+const folderController = new FolderController(folderService);
 
 export const folderRoute = new Elysia({ prefix: '/folders' });
