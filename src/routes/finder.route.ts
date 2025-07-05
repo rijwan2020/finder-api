@@ -9,4 +9,5 @@ const finderController = new FinderController(finderService);
 
 export const finder = new Elysia({ prefix: '/finders' })
     .get('/', finderController.getAll)
-    .post('/', finderController.create);
+    .post('/', finderController.create)
+    .put('/:id', finderController.update);

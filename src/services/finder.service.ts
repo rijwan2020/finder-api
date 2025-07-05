@@ -33,4 +33,11 @@ export class FinderService {
         }
         return true;
     }
+
+    update = (
+        id: number,
+        data: { name: string }
+    ) => {
+        return this.finderRepo.update(id, data);
+    }
 }

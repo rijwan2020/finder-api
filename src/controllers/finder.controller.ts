@@ -56,4 +56,26 @@ export class FinderController {
         }
         return response;
     }
+
+    update = async ({ params, body }: Context<{
+        body: { name: string };
+        params: { id: string }
+    }>) => {
+        const response: {
+            data?: Finder;
+            message: string;
+            code: number;
+        } = {
+            data: undefined,
+            message: 'Create finder successful',
+            code: 200,
+        };
+        try {
+            response.data = await this.finderSvc.update(Number(params.id), body);
+        } catch (error) {
+            response.message = 'Failed to create finder data';
+            response.code = 500;
+        }
+        return response;
+    }
 }
