@@ -1,7 +1,7 @@
-import { Folder } from "@models/folder.model";
+import { Finder } from "@models/finder.model";
 import { Op } from "sequelize";
 
-export class FolderRepository {
+export class FinderRepository {
     getAll = ({ parent_id }: { parent_id?: number }) => {
         const where: any = {}
 
@@ -11,28 +11,30 @@ export class FolderRepository {
             where.parent_id = { [Op.eq]: null };
         }
 
-        return Folder.findAll({
+        return Finder.findAll({
             where,
         });
     }
 
-    getById = (id: number) => Folder.findByPk(id);
+    getById = (id: number) => Finder.findByPk(id);
 
     create = (data: {
         name: string;
+        type: string;
         parent_id?: number;
         total_child?: number;
-    }) => Folder.create(data);
+    }) => Finder.create(data);
 
     update = async (
         id: number,
         data: Partial<{
             name: string;
+            type: string;
             parent_id: number;
             total_child: number;
         }>
     ) => {
-        const folder = await Folder.findByPk(id);
-        return folder?.update(data);
+        const finder = await Finder.findByPk(id);
+        return finder?.update(data);
     };
 }

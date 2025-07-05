@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '@lib/db';
 
-export class Folder extends Model {}
+export class Finder extends Model {}
 
-Folder.init(
+Finder.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -12,6 +12,10 @@ Folder.init(
             allowNull: false
         },
         name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        type: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -27,6 +31,6 @@ Folder.init(
     },
     {
         sequelize,
-        tableName: 'folders',
+        tableName: 'finders',
     }
 );
