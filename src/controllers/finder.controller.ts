@@ -97,4 +97,24 @@ export class FinderController {
         }
         return response;
     }
+
+    getOne = async ({ params }: Context) => {
+        const response: {
+            data: any;
+            message: string;
+            code: number;
+        } = {
+            data: null,
+            message: 'Get finder successful',
+            code: 200,
+        };
+        try {
+            response.data = await this.finderSvc.getOne(Number(params.id));
+        } catch (error) {
+            console.log('🚀 ~ FinderController ~ delete ~ error:', error);
+            response.message = 'Failed to get finder data';
+            response.code = 500;
+        }
+        return response;
+    }
 }

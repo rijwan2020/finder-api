@@ -55,6 +55,10 @@ export class FinderService {
         data: { name: string }
     ) => this.finderRepo.update(id, data);
 
+    getOne = (
+        id: number,
+    ) => this.finderRepo.getById(id);
+
     delete = async (id: number) => {
         const finder: Finder | null = await this.finderRepo.getById(id);
         await this.finderRepo.delete(id);
