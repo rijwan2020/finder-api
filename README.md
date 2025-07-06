@@ -1,15 +1,23 @@
 # Finder API
 
-To install dependencies:
+This project was created using `bun init` in bun v1.0.2. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+
+## How to Run
+* Clone repository
+
+* Generate .env
+```bash
+cp .env.example .env
+```
+
+* Install dependencies:
 
 ```bash
 bun install
 ```
 
-To run:
+* Run:
 
 ```bash
 bun run src/app.ts
 ```
-
-This project was created using `bun init` in bun v1.0.2. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
