@@ -10,6 +10,8 @@ This project was created using `bun init` in bun v1.0.2. [Bun](https://bun.sh) i
 cp .env.example .env
 ```
 
+* Setup your database in env file
+
 * Install dependencies:
 
 ```bash
