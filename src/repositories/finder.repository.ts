@@ -4,6 +4,7 @@ export class FinderRepository {
     getAll = (where: any = {}) => {
         return Finder.findAll({
             where,
+            order: [['type', 'DESC']]
         });
     }
 
